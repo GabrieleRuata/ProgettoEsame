@@ -1,0 +1,11 @@
+#body{
+    background-color: rgba(0, 255, 255, 0.2);
+}
+
+.flex-row{
+    background-color: rgba(208, 255, 0, 0.2);
+}
+
+.col{
+    background-color: rgba(255, 0, 0, 0.2);
+}
