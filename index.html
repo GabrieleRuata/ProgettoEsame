@@ -46,27 +46,34 @@
   
   <script>
     $('document').ready(function () {
-      const audio = new Audio("Rain.mp3");
+      const Rain = new Audio("Rain.mp3");
+      const Music = new Audio("The Central Park North - All the Time.mp3");
+
         $('#play').click(function () {
-          audio.play();
-          audio.volume = $('#volume').val() / 100;
-          audio.loop=true;
+          Music.play();
+          Music.loop=true;
+        });
+
+        $('#volume').click(function () {
+          Rain.play();
+          Rain.volume = $('#volume').val() / 100;
+          Rain.loop=true;
         });
 
         $('#volume').change(function () {
-          audio.volume = $(this).val() / 100;
+          Rain.volume = $(this).val() / 100;
         });
 
         $('#stop').click(function () {
-          audio.pause();
+          Music.pause();
         });
 
         $('#volumeUP').click(function () {
-          audio.volume += 0.1;
+          Music.volume += 0.1;
         });
 
         $('#volumeDW').click(function () {
-          audio.volume += -0.1;
+          Music.volume += -0.1;
         });
       });   
   </script>
