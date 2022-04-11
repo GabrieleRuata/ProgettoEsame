@@ -16,8 +16,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
-  <link href="js/script.js">
   <script src="server.js"></script>
+  <script src="js/script.js"></script>
 </head>
 
 <body id="body">
@@ -40,18 +40,17 @@
 
     <div class="col-sm-1 col-md-4"></div>
   </nav>
+  
   <script>
     $('document').ready(function () {
-      $('do')
-      document.getElementById('Rain').play();
-    $('#play').click(function () {
-        $(this).text("pause");
-        document.getElementById('Rain').play();
 
-        var myAudio = new Audio('Rain.mp3');
-        myAudio.play();
-    });
-});   
+      $('#play').click(function () {
+
+        const audio = new Audio("Rain.mp3");
+        audio.play();
+      });
+
+    });   
   </script>
 
 </body>
