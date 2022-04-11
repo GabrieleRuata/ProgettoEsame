@@ -29,8 +29,10 @@
   <nav class="navbar fixed-top">
 
   </nav>
+  
+
   <nav class="navbar fixed-bottom container">
-    <div class="col-sm-1 col-md-4"></div>
+    <div class="col-sm-1 col-md-4"> <input type="range" min="0" max="100" value="50" id="volume" ></div>
 
     <div class="btn-group col-md-4 col-sm-12" role="group" aria-label="First group">
       <button type="button" class="btn btn-secondary" id="volumeDW"><<</button>
@@ -47,6 +49,11 @@
       const audio = new Audio("Rain.mp3");
         $('#play').click(function () {
           audio.play();
+          audio.loop=true;
+        });
+
+        $('#volume').change(function () {
+          audio.volume = $(this).val() / 100;
         });
 
         $('#stop').click(function () {
