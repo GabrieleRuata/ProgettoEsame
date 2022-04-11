@@ -1,11 +1,15 @@
 #body{
-    background-color: rgba(0, 255, 255, 0.2);
+    background-color: rgba(255, 0, 179, 0.2);
 }
 
-.flex-row{
-    background-color: rgba(208, 255, 0, 0.2);
+.row{
+    background-color: rgba(0, 255, 157, 0.2);
 }
 
-.col{
-    background-color: rgba(255, 0, 0, 0.2);
+.col-12{
+    background-color: rgba(0, 255, 225, 0.2);
+}
+
+html, body{
+    height: 100%;
 }
