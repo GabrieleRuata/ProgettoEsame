@@ -33,9 +33,10 @@
     <div class="col-sm-1 col-md-4"></div>
 
     <div class="btn-group col-md-4 col-sm-12" role="group" aria-label="First group">
-      <button type="button" class="btn btn-secondary"><<</button>
+      <button type="button" class="btn btn-secondary" id="volumeDW"><<</button>
       <button type="button" class="btn btn-secondary" id="play">play</button>
-      <button type="button" class="btn btn-secondary">>></button>
+      <button type="button" class="btn btn-secondary" id="stop">stop</button>
+      <button type="button" class="btn btn-secondary" id="volumeUP">>></button>
     </div>
 
     <div class="col-sm-1 col-md-4"></div>
@@ -43,14 +44,23 @@
   
   <script>
     $('document').ready(function () {
+      const audio = new Audio("Rain.mp3");
+        $('#play').click(function () {
+          audio.play();
+        });
 
-    $('#play').click(function () {
-        
-  const audio = new Audio("Rain.mp3" );
-  audio.play();
-    });
+        $('#stop').click(function () {
+          audio.pause();
+        });
 
-});   
+        $('#volumeUP').click(function () {
+          audio.volume += 0.1;
+        });
+
+        $('#volumeDW').click(function () {
+          audio.volume += -0.1;
+        });
+      });   
   </script>
 
 </body>
