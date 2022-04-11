@@ -49,6 +49,7 @@
       const audio = new Audio("Rain.mp3");
         $('#play').click(function () {
           audio.play();
+          audio.volume = $('#volume').val() / 100;
           audio.loop=true;
         });
 
