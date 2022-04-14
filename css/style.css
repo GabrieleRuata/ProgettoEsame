@@ -1,5 +1,5 @@
 #body{
-    background-color: rgba(255, 0, 179, 0.2);
+    background-color: rgba(188, 255, 112, 0.2);
 }
 
 .container{
@@ -24,4 +24,18 @@ html, body{
 
 .navbar{
     background-color: rgba(255, 0, 0, 0.2);
+}
+
+.card{
+    margin: 10px;
+    height: 18rem;
+    width: 18rem;
+}
+
+#note{
+    height: 100%;
+}
+
+.SVG{
+   height: 10%;
 }
