@@ -6,9 +6,15 @@ $('document').ready(function () {
   $('.exitfullscreen').hide();
 
 
-  $('#play').click(function () {
+  $('#play-stop').click(function () {
+    Music.loop=true;
+    if($('#play-stop').text()=='Play'){
       Music.play();
-      Music.loop=true;
+      $('#play-stop').text('Pause');
+    }else{
+      Music.pause();
+      $('#play-stop').text('Play');
+    }
   });
 
   $('#volumeMusica').click(function () {
@@ -77,11 +83,9 @@ $('document').ready(function () {
 
     var timedelay = 1;
     function delayCheck() {
-        console.log(timedelay);
-        if (timedelay == 15) {
+        if (timedelay == 15) {    //rimetti a 15 quando hai finito
             $('.card').hide();
             timedelay = 1;
-            console.clear();
         }
         timedelay = timedelay+1;
     }

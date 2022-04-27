@@ -20,11 +20,18 @@
   <script src="server.js"></script>
   <script src="js/script.js"></script>
   <script src="js/tomatoTimer.js"></script>
-  <script src="js/bho.js"></script>
   <link rel="stylesheet" href="css/style.css">
+  <!--<link rel="stylesheet" href="css/progettazione.css">-->
+  <link rel="stylesheet" href="css/Background.css">
+</script><script  src="js/Background.js"></script>
 </head>
 
 <body id="body">
+
+  <div class="wrapper grad">
+    <div class="dots"></div>
+    <canvas id="metaball-canvas" class="metaball-canvas"></canvas>
+  </div>
 
     <div class="container-fluid">
       <div class="row">
@@ -37,46 +44,73 @@
           <button class="btn exitfullscreen">exit full screen</button>
         </nav>
     
-        <div class="col-12 container">
+        <div class="col-12 container" id="containter-card">
           <div class="row">
-    
-            <div class="card" id="pomodoro-app">
-              <h5>Tomato timer</h5>
-              <hr>
-              <div id="container">
-                <div id="timer">
-                  <div id="time">
-                    <span id="minutes">25</span>
-                    <span id="colon">:</span>
-                    <span id="seconds">00</span>
+
+            <div class="col-3">
+              <div class="card" id="pomodoro-app">
+                <button class="btn close-card btn-danger"></button>
+                <h5 class="text-center">Tomato timer</h5>
+                <hr>
+                <div id="container" class="container-fluid">
+                  <div id="timer">
+                    <div id="time">
+                      <span id="minutes">25</span>
+                      <span id="colon">:</span>
+                      <span id="seconds">00</span>
+                    </div>
+                    
                   </div>
-                </div>
-    
-                <div id="buttons">
-                  <button class="btn" id="work">Work</button>
-                  <button class="btn" id="shortBreak">Short Break</button>
-                  <button class="btn" id="longBreak">Long Break</button>
-                  <button class="btn" id="stop">Stop</button>
+
+                  <div id="filler"></div>
+      
+                  <div id="buttons" class="row">
+                    <button class="btn col-6" id="work">Work</button>
+                    <button class="btn col-6" id="stop">Stop</button>
+                    <button class="btn col-6" id="shortBreak">Short Break</button>
+                    <button class="btn col-6" id="longBreak">Long Break</button>
+                  </div>
                 </div>
               </div>
             </div>
-    
-            <div class="card" id="WhiteNoises">
-              <h5>White Noises</h5>
-              <hr>
-              <span>Rain</span>
-              <input type="range" min="0" max="100" value="50" id="volumeRain">
-              <span>Fire</span>
-              <input type="range" min="0" max="100" value="50" id="volumeFire">
+
+            <div class="col-6">
+              null
             </div>
-    
-            <div class="card text-" id="Notepad">
-              <h5 class="text-center">NotePad</h5>
-              <hr>
-              <textarea id="note"></textarea>
-              <button type="button" class="btn" id="NPClear">Clear</button>
-              <button type="button" class="btn" id="NPSave">Save</button>
+
+            <div class="col-3">
+              <div class="card float-right" id="WhiteNoises">
+                <h5 class="text-center">White Noises</h5>
+                <hr>
+                <span>Rain</span>
+                <input type="range" min="0" max="100" value="50" id="volumeRain">
+                <span>Fire</span>
+                <input type="range" min="0" max="100" value="50" id="volumeFire">
+              </div>
             </div>
+            
+            <div class="col-3">
+              <div class="card" id="Notepad">
+                <h5 class="text-center">NotePad</h5>
+                <hr>
+                <textarea id="note"></textarea>
+                <button type="button" class="btn" id="NPClear">Clear</button>
+                <button type="button" class="btn" id="NPSave">Save</button>
+              </div>
+            </div>
+
+            <div class="col-6">
+              null
+            </div>
+
+            <div class="col-3">
+              <div class="card float-right" id="MusicGeneres">
+                <h5 class="text-center">Music</h5>
+                <hr>
+                seleziona musica genere
+              </div>
+            </div>
+
           </div>
         </div>
     
@@ -84,9 +118,8 @@
           <div class="col-sm-1 col-md-4"></div>
     
           <div class="btn-group col-md-4 col-sm-12" role="group" aria-label="First group">
-            <button type="button" class="btn btn-secondary"><<<</button>
-                <button type="button" class="btn btn-secondary" id="play">Play</button>
-                <button type="button" class="btn btn-secondary" id="stopP">Pause</button>
+            <button type="button" class="btn btn-secondary"><<</button>
+                <button type="button" class="btn btn-secondary" id="play-stop">Play</button>
                 <button type="button" class="btn btn-secondary">>></button>
           </div>
     
@@ -97,6 +130,66 @@
       </div>
     
     </div>
+    
+
+<script type="x-shader/x-vertex" id="vertexMetaballs">
+	attribute vec2 position;
+  void main() {
+  	gl_Position = vec4(position, 0.0, 1.0);
+	}
+</script>
+<script type="x-shader/x-fragment" id="fragmentMetaballs">
+	precision highp float;
+  const int NUM_METABALLS = 15;
+
+  uniform vec3 metaballs[15];
+  uniform vec2 uResolution;
+  uniform sampler2D uColorSampler;
+  uniform sampler2D uNoiseSampler;
+  uniform float uTime;
+  
+	void main(){
+  	float x = gl_FragCoord.x;
+    float y = gl_FragCoord.y;
+    float v = 0.0;
+    float radius = 2.0;
+    float speed = 1.5;
+    for (int i = 0; i < NUM_METABALLS; i++) {
+    	vec3 mb = metaballs[i];
+			float dx = mb.x - x;
+			float dy = mb.y - y;
+
+      float r = mb.z;
+      v += r*r/(dx*dx + dy*dy);
+		}
+
+    vec4 color;
+    if (v > 1.0) {
+    	vec4 textureColor = texture2D(uColorSampler, vec2(gl_FragCoord.x / uResolution.x, gl_FragCoord.y / uResolution.y) );
+      vec4 noiseColor = (texture2D(uNoiseSampler, gl_FragCoord.xy / 100.0 )) / 1.;
+      float l = length(noiseColor);
+      if(l > 1.05){
+      	vec4 mixedColor = textureColor + (noiseColor * 0.001);
+				color = mixedColor;
+			}
+      else{
+      	//discard;
+        color = textureColor * 0.85;
+			}
+		}
+    else {
+    	discard;
+		}
+    gl_FragColor = vec4(color.rgb, 0.8);
+	}
+
+</script>
+
+
+
+<!-- partial -->
+  <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-183/Metaballs.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js'></script>
 </body>
 
 </html>
