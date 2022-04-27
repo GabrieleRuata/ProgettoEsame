@@ -39,3 +39,9 @@ html, body{
 .SVG{
    height: 10%;
 }
+
+#note{
+    display: block;
+    resize: none;
+    background-color: transparent;
+}
