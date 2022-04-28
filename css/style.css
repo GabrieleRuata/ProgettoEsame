@@ -1,0 +1,47 @@
+
+
+html, body{
+    height: 100%;
+}
+
+.card{
+    margin: 10px;
+    height: 16rem;
+    width: 18rem;
+}
+
+.close-card{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+}
+
+
+#note{
+    height: 100%;
+}
+
+.SVG{
+   height: 10%;
+}
+
+#note{
+    display: block;
+    resize: none;
+    background-color: transparent;
+}
+
+#timer{
+    height: 5rem;
+}
+
+#time{
+    height: 100%;
+    font-size: 40px;
+}
+
+#filler{
+    background : #55ff00;
+    height: 10px;
+    width: 0px;
+  }
