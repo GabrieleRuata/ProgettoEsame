@@ -17,16 +17,19 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
-  <script src="server.js"></script>
+
   <script src="js/script.js"></script>
   <script src="js/tomatoTimer.js"></script>
+  <script src="js/spotify.js"></script>
+  <script src="https://sdk.scdn.co/spotify-player.js"></script>
+  
   <link rel="stylesheet" href="css/style.css">
   <!--<link rel="stylesheet" href="css/progettazione.css">-->
   <link rel="stylesheet" href="css/Background.css">
 </script><script  src="js/Background.js"></script>
 </head>
 
-<body id="body">
+<body id="body" onload="onPageLoad()">
 
   <div class="wrapper grad">
     <div class="dots"></div>
@@ -75,7 +78,32 @@
             </div>
 
             <div class="col-6">
-              null
+
+              <label for="devices" class="form-label">Devices</label>
+              <select id="devices" class="form-control">
+              </select>
+              <input class="btn btn-primary btn-sm mt-3" type="button" onclick="refreshDevices()" value="Refresh Devices">
+              <input type="button" class="btn btn-dark btn-sm  mt-3" onclick="transfer()" value="Transfer">
+              
+              <label for="playlists" class="form-label">Playlists</label>
+              <select id="playlists" class="form-control">
+              </select>
+              <input class="btn btn-primary btn-sm mt-3" type="button" onclick="refreshPlaylists()" value="Refresh Playlists">
+              
+              <label for="tracks" class="form-label">Tracks</label>
+              <select id="tracks" class="form-control">
+              </select>
+              <input class="btn btn-primary btn-sm mt-3" type="button" onclick="fetchTracks()" value="Fetch Tracks">
+              
+              <label for="tracks" class="form-label">Album</label>
+              <input id="album" class="form-control">
+              
+              <input type="button" class="btn btn-dark" onclick="previous()" value="Prev">
+              <input type="button" class="btn btn-dark" onclick="play()" value="Play">
+              <input type="button" class="btn btn-dark" onclick="shuffle()" value="Shuffle">
+              <input type="button" class="btn btn-dark" onclick="pause()" value="Pause">
+              <input type="button" class="btn btn-dark" onclick="next()" value="Next">
+
             </div>
 
             <div class="col-3">
@@ -100,14 +128,32 @@
             </div>
 
             <div class="col-6">
-              null
+              
+              <div class="col">
+                <h1> Currently Playing</h1>
+                <input type="button" class="btn btn-primary btn-sm mt-3" onclick="currentlyPlaying()" value="Refresh Currently Playing">
+                <div>
+                    <img id="albumImage" src="">
+                    <div id="trackTitle"></div>
+                    <div id="trackArtist"></div>
+                </div>
+
+                <div class="col">
+                  <div id="radioButtons"></div>
+                  <input type="button" class="btn btn-dark" onclick="saveNewRadioButton()" value="Add">
+              </div>
+
+
+            </div>
+              
             </div>
 
             <div class="col-3">
               <div class="card float-right" id="MusicGeneres">
                 <h5 class="text-center">Music</h5>
                 <hr>
-                seleziona musica genere
+                
+                
               </div>
             </div>
 
@@ -118,10 +164,12 @@
           <div class="col-sm-1 col-md-4"></div>
     
           <div class="btn-group col-md-4 col-sm-12" role="group" aria-label="First group">
-            <button type="button" class="btn btn-secondary"><<</button>
-                <button type="button" class="btn btn-secondary" id="play-stop">Play</button>
-                <button type="button" class="btn btn-secondary">>></button>
+            <button type="button" class="btn btn-secondary">previous</button>
+            <button type="button" class="btn btn-secondary" id="play-stop">Play</button>
+            <button type="button" class="btn btn-secondary">next</button>
           </div>
+
+          <input class="btn btn-primary btn-lg" type="button" onclick="requestAuthorization()" value="Request Authorization">
     
           <div class="col-sm-1 col-md-4">
             <input type="range" min="0" max="100" value="50" id="volumeMusica">
@@ -131,6 +179,7 @@
     
     </div>
     
+
 
 <script type="x-shader/x-vertex" id="vertexMetaballs">
 	attribute vec2 position;
@@ -184,8 +233,6 @@
 	}
 
 </script>
-
-
 
 <!-- partial -->
   <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-183/Metaballs.js'></script>
