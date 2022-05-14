@@ -18,9 +18,10 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
 
+  <script src="js/Background.js"></script>"  
   <script src="js/script.js"></script>
   <script src="js/tomatoTimer.js"></script>
-  <script src="js/spotify.js"></script>
+  <!--<script src="js/spotify.js"></script>-->
   <script src="https://sdk.scdn.co/spotify-player.js"></script>
   
   <link rel="stylesheet" href="css/style.css">
@@ -30,6 +31,8 @@
 </head>
 
 <body id="body" onload="onPageLoad()">
+
+
 
   <div class="wrapper grad">
     <div class="dots"></div>
@@ -78,6 +81,7 @@
             </div>
 
             <div class="col-6">
+              
 
               <label for="devices" class="form-label">Devices</label>
               <select id="devices" class="form-control">
@@ -104,6 +108,7 @@
               <input type="button" class="btn btn-dark" onclick="pause()" value="Pause">
               <input type="button" class="btn btn-dark" onclick="next()" value="Next">
 
+              
             </div>
 
             <div class="col-3">
@@ -128,7 +133,7 @@
             </div>
 
             <div class="col-6">
-              
+            
               <div class="col">
                 <h1> Currently Playing</h1>
                 <input type="button" class="btn btn-primary btn-sm mt-3" onclick="currentlyPlaying()" value="Refresh Currently Playing">
@@ -143,7 +148,7 @@
                   <input type="button" class="btn btn-dark" onclick="saveNewRadioButton()" value="Add">
               </div>
 
-
+            
             </div>
               
             </div>
@@ -169,7 +174,7 @@
             <button type="button" class="btn btn-secondary">next</button>
           </div>
 
-          <input class="btn btn-primary btn-lg" type="button" onclick="requestAuthorization()" value="Request Authorization">
+          <!--<input class="btn btn-primary btn-lg" type="button" onclick="requestAuthorization()" value="Request Authorization">-->
     
           <div class="col-sm-1 col-md-4">
             <input type="range" min="0" max="100" value="50" id="volumeMusica">
@@ -181,6 +186,7 @@
     
 
 
+<!-- partial:index.partial.html -->
 <script type="x-shader/x-vertex" id="vertexMetaballs">
 	attribute vec2 position;
   void main() {
@@ -233,10 +239,10 @@
 	}
 
 </script>
-
 <!-- partial -->
-  <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-183/Metaballs.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js'></script>
+<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-183/Metaballs.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js'></script><script  src="js/Background.js"></script>
+
 </body>
 
 </html>
