@@ -42,4 +42,26 @@ html, body{
     background : #55ff00;
     height: 10px;
     width: 0px;
-  }
+    border-radius: 50%;
+}
+
+#albumImage{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+#trackTitle{
+    font-size: 15px;
+    font-style: bold;
+    color: aliceblue;
+}
+
+#trackArtist{
+    font-size: 10px;
+    color: aliceblue;
+}
+
+.API-Spotify{
+    visibility: hidden;
+}

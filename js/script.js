@@ -2,7 +2,7 @@ $('document').ready(function () {
   const Rain = new Audio("Reference/Rain.mp3");
   const Fire = new Audio("Reference/Fire.mp3");
   
-  $('#API-Spotify').hide();
+  $('.API-Spotify').hide();
   $('#pause').hide();
   $('.exitfullscreen').hide();
 
@@ -32,9 +32,6 @@ $('document').ready(function () {
       Fire.loop=true;
   });
 
-  $('#stopP').click(function () {
-      Music.pause();
-  });
 
   $('.requestfullscreen').click(function () {
     var elem = document.documentElement;

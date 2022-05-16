@@ -55,7 +55,6 @@
 
             <div class="col-3">
               <div class="card" id="pomodoro-app">
-                <button class="btn close-card btn-danger"></button>
                 <h5 class="text-center">Tomato timer</h5>
                 <hr>
                 <div id="container" class="container-fluid">
@@ -81,7 +80,7 @@
             </div>
 
             <div class="col-6">
-              <div id="API-Spotify">
+              <div class="API-Spotify">
                 <label for="devices" class="form-label">Devices</label>
                 <select id="devices" class="form-control">
                 </select>
@@ -133,14 +132,9 @@
 
             <div class="col-6">
             
-              <div class="col">
+              <div class="API-Spotify">
                 <h1> Currently Playing</h1>
                 <input type="button" class="btn btn-primary btn-sm mt-3" onclick="currentlyPlaying()" value="Refresh Currently Playing">
-                <div>
-                    <img id="albumImage" src="">
-                    <div id="trackTitle"></div>
-                    <div id="trackArtist"></div>
-                </div>
 
                 <div class="col">
                   <div id="radioButtons"></div>
@@ -153,12 +147,15 @@
             </div>
 
             <div class="col-3">
-              <div class="card float-right" id="MusicGeneres">
+              <div class="card float-right container-fluid" id="MusicGeneres">
                 <h5 class="text-center">Music</h5>
                 <hr>
-                
-                <input class="btn btn-primary btn-lg" type="button" onclick="requestAuthorization()" id="Request" value="Request Authorization"><br/>
-                
+                <input class="btn btn-primary btn-lg" type="button" onclick="requestAuthorization()" id="Request" value="Request Authorization">
+                <div class="col-12" id="MusicGenres">
+                  <button class="btn col-12" id="gnLofi" onclick="gnLofi()">Lofi</button>
+                  <button class="btn col-12" id="gnSleep" onclick="gnSleep()">Sleep</button>
+                  <button class="btn col-12" id="gnJazz" onclick="gnJazz()">Jazz</button>
+                </div>
               </div>
             </div>
 
@@ -166,7 +163,15 @@
         </div>
     
         <nav class="navbar fixed-bottom container">
-          <div class="col-sm-1 col-md-4"></div>
+          <div class="col-sm-1 col-md-4 row">
+                  <div class="col-6">
+                    <div id="trackTitle"></div>
+                    <div id="trackArtist"></div>
+                  </div>
+                  <div class="col-6">
+                    <img id="albumImage" src="">
+                  </div>
+          </div>
     
           <div class="btn-group col-md-4 col-sm-12" role="group" aria-label="First group">
             <button type="button" class="btn btn-secondary"onclick="previous()">previous</button>
@@ -178,7 +183,7 @@
           <!--<input class="btn btn-primary btn-lg" type="button" onclick="requestAuthorization()" value="Request Authorization">-->
     
           <div class="col-sm-1 col-md-4">
-            <input type="range" min="0" max="100" value="50" id="volumeMusica">
+            <input type="range" min="0" max="100" value="50"  id="volumeMusica">
           </div>
         </nav>
       </div>

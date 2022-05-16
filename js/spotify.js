@@ -1,6 +1,5 @@
-
 window.onSpotifyWebPlaybackSDKReady = () => {
-    const token = 'BQBoqnekVHO9omCfTIglhErOWaNkbV81lxet2N2mSH-TuaPrcOep70HOGTlU3IvCSiOFoUao2nLDYJl7220N0G7NreYOmLmhX-o6utgvh0iuoncmPu1Kvnoa4e5q3vCkX_daOepVSpkPQ5fLgF0wXN5Y7un4AKoKHjOqG-ZY30Emg59pLRoKrtg6yMc';
+    const token = 'BQDn3fKaGI7v3cAfWFoZ3WegFM39gPo61bOPvJg6reQBwj-elXvULwLFiMOoqZBfHTbPU38jNU73BBnIQzqSaJ0bpX0EiEkVPvkvuqUf7brwyquxQLWYI73YQTLIXK3R2yy6ypwoWdE84-7egfVYcNt-DlLxqkUPwFnz64N2sH6IkZ1YoDamLgfCZDk';
     const player = new Spotify.Player({
         name: 'Relax In-Site Player',
         getOAuthToken: cb => { cb(token); },
@@ -30,6 +29,12 @@ window.onSpotifyWebPlaybackSDKReady = () => {
 
     player.addListener('account_error', ({ message }) => {
         console.error(message);
+    });
+
+    $('#volumeMusica').click(function(){
+        player.setVolume($('#volumeMusica').val()/100).then(() => {
+            console.log('Volume updated!');
+          });
     });
 
     document.onload = function() {
@@ -71,6 +76,7 @@ $('document').ready(function () {
 
 function onPageLoad(){
 
+    $('#albumImage').hide();
     console.log("access_token: " + access_token);
 
     refreshDevices();
@@ -87,11 +93,14 @@ function onPageLoad(){
         access_token = localStorage.getItem("access_token");
         if ( access_token == null ){
             // we don't have an access token so present token section
-            console.log(access_token);  
+            console.log(access_token);
+            $('#MusicGenres').hide();
+            $('#Request').show();
         }
         else {
             // we have an access token so present device section 
-            document.getElementById("Request").style.display = 'block';
+            $('#Request').hide();
+            $('#MusicGenres').show();
             refreshDevices();
             refreshPlaylists();
             currentlyPlaying();
@@ -186,8 +195,8 @@ function handleAuthorizationResponse(){
         onPageLoad();
     }
     else {
-        console.log(this.responseText);
-        alert(this.responseText);
+        //console.log(this.responseText);
+        //alert(this.responseText);
     }
 }
 
@@ -263,6 +272,7 @@ function removeAllItems( elementId ){
 }
 
 function play(){
+    $('#albumImage').show();
     let playlist_id = document.getElementById("playlists").value;
     let trackindex = document.getElementById("tracks").value;
     let album = document.getElementById("album").value;
@@ -280,7 +290,8 @@ function play(){
     
     setTimeout(function(){
         currentlyPlaying();
-    }, 500);
+    }, 1000);
+    currentlyPlaying();
 }
 
 function shuffle(){
@@ -289,7 +300,8 @@ function shuffle(){
     
     setTimeout(function(){
         currentlyPlaying();
-    }, 500);
+    }, 1000);ù
+    currentlyPlaying();
 }
 
 function pause(){
@@ -301,7 +313,8 @@ function next(){
     
     setTimeout(function(){
         currentlyPlaying();
-    }, 500);
+    }, 1000);
+    currentlyPlaying();
 }
 
 function previous(){
@@ -309,7 +322,8 @@ function previous(){
     
     setTimeout(function(){
         currentlyPlaying();
-    }, 100);
+    }, 1000);
+    currentlyPlaying();
 }
 
 function transfer(){
@@ -331,8 +345,8 @@ function handleApiResponse(){
         refreshAccessToken()
     }
     else {
-        console.log(this.responseText);
-        alert(this.responseText);
+        //console.log(this.responseText);
+        //alert(this.responseText);
     }    
 }
 
@@ -449,3 +463,44 @@ function addRadioButton(item, index){
     document.getElementById("radioButtons").appendChild(node);
 }
 
+function gnLofi(){
+    refreshPlaylists();
+    pause();
+    setTimeout(function(){
+        document.getElementById("playlists").selectedIndex = "0";
+        
+    }, 1000);
+
+    $('#pause').hide();
+    $('#play').show();
+    
+    console.log("gnLofi");
+}
+
+function gnSleep(){
+    refreshPlaylists();
+    pause();
+    setTimeout(function(){
+        document.getElementById("playlists").selectedIndex = "1";
+        
+    }, 1000);
+
+    $('#pause').hide();
+    $('#play').show();
+
+    console.log("gnSleep");
+}
+
+function gnJazz(){
+    refreshPlaylists();
+    pause();
+    setTimeout(function(){
+        document.getElementById("playlists").selectedIndex = "2";
+        
+    }, 1000);
+
+    $('#pause').hide();
+    $('#play').show();
+
+    console.log("gnJazz");
+}
