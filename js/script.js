@@ -16,8 +16,18 @@ $('document').ready(function () {
     $('#play').show();
   });
 
-  $('#volumeMusica').click(function () {
-      Music.volume = $('#volumeMusica').val() / 100;
+  
+  
+
+  $('#volumeMusica').change(function VolumeIcon() {
+    if($('#volumeMusica').val()>49){
+      $('#VolumeIcon').attr("src","Reference/volume(2).png");
+    }else{
+      $('#VolumeIcon').attr("src","Reference/volume(1).png");
+    }
+    if ($('#volumeMusica').val()<1){
+      $('#VolumeIcon').attr("src","Reference/mute.png");
+    }
   });
 
   $('#volumeRain').click(function () {
@@ -80,13 +90,15 @@ $('document').ready(function () {
     var timedelay = 1;
     function delayCheck() {
         if (timedelay == 15) {    //rimetti a 15 quando hai finito
-            $('.card').hide();
+            $('.card').hide(1000);
+            $('.text-card').hide(500);
             timedelay = 1;
         }
         timedelay = timedelay+1;
     }
     $(document).mousemove(function () {
         $('.card').show();
+        $('.text-card').show();
         timedelay = 1;
         clearInterval(_delay);
         _delay = setInterval(delayCheck, 500);
@@ -94,6 +106,7 @@ $('document').ready(function () {
 
     $(document).on("touchstart click mouseenter keyup", "#note", function(){
         $('.card').show();
+        $('.text-card').show();
         timedelay = 1;
         clearInterval(_delay);
         _delay = setInterval(delayCheck, 500);
@@ -102,4 +115,3 @@ $('document').ready(function () {
     _delay = setInterval(delayCheck, 500)
 
 });
-

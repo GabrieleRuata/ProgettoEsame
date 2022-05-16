@@ -1,5 +1,5 @@
 window.onSpotifyWebPlaybackSDKReady = () => {
-    const token = 'BQDn3fKaGI7v3cAfWFoZ3WegFM39gPo61bOPvJg6reQBwj-elXvULwLFiMOoqZBfHTbPU38jNU73BBnIQzqSaJ0bpX0EiEkVPvkvuqUf7brwyquxQLWYI73YQTLIXK3R2yy6ypwoWdE84-7egfVYcNt-DlLxqkUPwFnz64N2sH6IkZ1YoDamLgfCZDk';
+    const token = 'BQAzwpLrqaL2Wrb2-EpNdYNinxzNGTSXxRYIU7piQ3BXRWBgjEDn2qtFd63BoyQn-emuEYGscPJ0zA3gEyO7jT1CwAyYNzPYPpnZD3iuD65TXY-VJ3y8bQ3sljpuTzn4FxF8Y0JrGAggj7qJzxOQ9xw9lIVcXL_rmnCSkZUPDXgRWskru2FsgdDirIg';
     const player = new Spotify.Player({
         name: 'Relax In-Site Player',
         getOAuthToken: cb => { cb(token); },
@@ -273,6 +273,7 @@ function removeAllItems( elementId ){
 
 function play(){
     $('#albumImage').show();
+    
     let playlist_id = document.getElementById("playlists").value;
     let trackindex = document.getElementById("tracks").value;
     let album = document.getElementById("album").value;
@@ -290,13 +291,14 @@ function play(){
     
     setTimeout(function(){
         currentlyPlaying();
+        shuffle();
     }, 1000);
     currentlyPlaying();
 }
 
 function shuffle(){
     callApi( "PUT", SHUFFLE + "?state=true&device_id=" + deviceId(), null, handleApiResponse );
-    play();
+    
     
     setTimeout(function(){
         currentlyPlaying();
