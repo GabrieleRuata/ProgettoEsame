@@ -1,7 +1,8 @@
+
 window.onSpotifyWebPlaybackSDKReady = () => {
-    const token = 'BQC0SrXK6-Hgwy4t-g2P4coO38qm01pHw8dOedYGV4SC7b8YZci2_HTcdfPh9e6SfSEFqGM4LLEDGkwlHFxgs607EtwVYb_lwanY8fx046RFuh76JIwYyup5Z-ePTr2bqBopLCgs84s4NNs000qzucsUoGDR21_Dqj2uzBkT2bvPmzr62ZaiwGAKGp8';
+    const token = 'BQBoqnekVHO9omCfTIglhErOWaNkbV81lxet2N2mSH-TuaPrcOep70HOGTlU3IvCSiOFoUao2nLDYJl7220N0G7NreYOmLmhX-o6utgvh0iuoncmPu1Kvnoa4e5q3vCkX_daOepVSpkPQ5fLgF0wXN5Y7un4AKoKHjOqG-ZY30Emg59pLRoKrtg6yMc';
     const player = new Spotify.Player({
-        name: 'Relax In-Site localhost',
+        name: 'Relax In-Site Player',
         getOAuthToken: cb => { cb(token); },
         volume: 0.5
     });
@@ -9,6 +10,9 @@ window.onSpotifyWebPlaybackSDKReady = () => {
     // Ready
     player.addListener('ready', ({ device_id }) => {
         console.log('Ready with Device ID', device_id);
+
+        console.log(access_token);
+        console.log(refresh_token);
     });
 
     // Not Ready
@@ -30,6 +34,7 @@ window.onSpotifyWebPlaybackSDKReady = () => {
 
     document.onload = function() {
       player.togglePlay();
+      console.log("access_token: " + access_token);
     };
 
     player.connect();
@@ -60,7 +65,20 @@ const TRACKS = "https://api.spotify.com/v1/playlists/{{PlaylistId}}/tracks";
 const CURRENTLYPLAYING = "https://api.spotify.com/v1/me/player/currently-playing";
 const SHUFFLE = "https://api.spotify.com/v1/me/player/shuffle";
 
-function carica(){
+$('document').ready(function () {
+    onPageLoad();
+});
+
+function onPageLoad(){
+
+    console.log("access_token: " + access_token);
+
+    refreshDevices();
+    setTimeout(function(){
+        document.getElementById("devices").selectedIndex = "1";
+    }, 1000);
+    
+
 
     if ( window.location.search.length > 0 ){
         handleRedirect();
@@ -69,17 +87,28 @@ function carica(){
         access_token = localStorage.getItem("access_token");
         if ( access_token == null ){
             // we don't have an access token so present token section
-            document.getElementById("tokenSection").style.display = 'block';  
+            console.log(access_token);  
         }
         else {
-            // we have an access token so present device section
-            document.getElementById("deviceSection").style.display = 'block';  
+            // we have an access token so present device section 
+            document.getElementById("Request").style.display = 'block';
             refreshDevices();
             refreshPlaylists();
             currentlyPlaying();
         }
     }
     refreshRadioButtons();
+
+    setTimeout(function(){
+        refreshDevices();
+        
+        document.getElementById("playlists").selectedIndex = "0";
+    }, 1000);
+    setTimeout(function(){
+        document.getElementById("playlists").selectedIndex = "0";
+    }, 1000);
+    
+    
 }
 
 function handleRedirect(){
@@ -95,7 +124,9 @@ function getCode(){
         const urlParams = new URLSearchParams(queryString);
         code = urlParams.get('code')
     }
+    /*token=code;*/
     return code;
+    
 }
 
 function requestAuthorization(){
@@ -126,6 +157,8 @@ function refreshAccessToken(){
     body += "&refresh_token=" + refresh_token;
     body += "&client_id=" + client_id;
     callAuthorizationApi(body);
+    console.log(access_token);
+    console.log(refresh_token);
 }
 
 function callAuthorizationApi(body){
@@ -244,11 +277,19 @@ function play(){
     body.offset.position = trackindex.length > 0 ? Number(trackindex) : 0;
     body.offset.position_ms = 0;
     callApi( "PUT", PLAY + "?device_id=" + deviceId(), JSON.stringify(body), handleApiResponse );
+    
+    setTimeout(function(){
+        currentlyPlaying();
+    }, 500);
 }
 
 function shuffle(){
     callApi( "PUT", SHUFFLE + "?state=true&device_id=" + deviceId(), null, handleApiResponse );
-    play(); 
+    play();
+    
+    setTimeout(function(){
+        currentlyPlaying();
+    }, 500);
 }
 
 function pause(){
@@ -257,10 +298,18 @@ function pause(){
 
 function next(){
     callApi( "POST", NEXT + "?device_id=" + deviceId(), null, handleApiResponse );
+    
+    setTimeout(function(){
+        currentlyPlaying();
+    }, 500);
 }
 
 function previous(){
     callApi( "POST", PREVIOUS + "?device_id=" + deviceId(), null, handleApiResponse );
+    
+    setTimeout(function(){
+        currentlyPlaying();
+    }, 100);
 }
 
 function transfer(){
@@ -399,3 +448,4 @@ function addRadioButton(item, index){
     node.onclick = function() { onRadioButton( item.deviceId, item.playlistId ) };
     document.getElementById("radioButtons").appendChild(node);
 }
+

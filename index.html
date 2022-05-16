@@ -21,7 +21,7 @@
   <script src="js/Background.js"></script>"  
   <script src="js/script.js"></script>
   <script src="js/tomatoTimer.js"></script>
-  <!--<script src="js/spotify.js"></script>-->
+  <script src="js/spotify.js"></script>
   <script src="https://sdk.scdn.co/spotify-player.js"></script>
   
   <link rel="stylesheet" href="css/style.css">
@@ -81,34 +81,33 @@
             </div>
 
             <div class="col-6">
-              
-
-              <label for="devices" class="form-label">Devices</label>
-              <select id="devices" class="form-control">
-              </select>
-              <input class="btn btn-primary btn-sm mt-3" type="button" onclick="refreshDevices()" value="Refresh Devices">
-              <input type="button" class="btn btn-dark btn-sm  mt-3" onclick="transfer()" value="Transfer">
-              
-              <label for="playlists" class="form-label">Playlists</label>
-              <select id="playlists" class="form-control">
-              </select>
-              <input class="btn btn-primary btn-sm mt-3" type="button" onclick="refreshPlaylists()" value="Refresh Playlists">
-              
-              <label for="tracks" class="form-label">Tracks</label>
-              <select id="tracks" class="form-control">
-              </select>
-              <input class="btn btn-primary btn-sm mt-3" type="button" onclick="fetchTracks()" value="Fetch Tracks">
-              
-              <label for="tracks" class="form-label">Album</label>
-              <input id="album" class="form-control">
-              
-              <input type="button" class="btn btn-dark" onclick="previous()" value="Prev">
-              <input type="button" class="btn btn-dark" onclick="play()" value="Play">
-              <input type="button" class="btn btn-dark" onclick="shuffle()" value="Shuffle">
-              <input type="button" class="btn btn-dark" onclick="pause()" value="Pause">
-              <input type="button" class="btn btn-dark" onclick="next()" value="Next">
-
-              
+              <div id="API-Spotify">
+                <label for="devices" class="form-label">Devices</label>
+                <select id="devices" class="form-control">
+                </select>
+                <input class="btn btn-primary btn-sm mt-3" type="button" onclick="refreshDevices()" value="Refresh Devices">
+                <input type="button" class="btn btn-dark btn-sm  mt-3" onclick="transfer()" value="Transfer">
+                
+                <label for="playlists" class="form-label">Playlists</label>
+                <select id="playlists" class="form-control">
+                </select>
+                <input class="btn btn-primary btn-sm mt-3" type="button" onclick="refreshPlaylists()" value="Refresh Playlists">
+                
+                <label for="tracks" class="form-label">Tracks</label>
+                <select id="tracks" class="form-control">
+                </select>
+                <input class="btn btn-primary btn-sm mt-3" type="button" onclick="fetchTracks()" value="Fetch Tracks">
+                
+                <label for="tracks" class="form-label">Album</label>
+                <input id="album" class="form-control">
+                
+                <input type="button" class="btn btn-dark" onclick="previous()" value="Prev">
+                <input type="button" class="btn btn-dark" onclick="play()" value="Play">
+                <input type="button" class="btn btn-dark" onclick="shuffle()" value="Shuffle">
+                <input type="button" class="btn btn-dark" onclick="pause()" value="Pause">
+                <input type="button" class="btn btn-dark" onclick="next()" value="Next">
+  
+              </div>
             </div>
 
             <div class="col-3">
@@ -158,6 +157,7 @@
                 <h5 class="text-center">Music</h5>
                 <hr>
                 
+                <input class="btn btn-primary btn-lg" type="button" onclick="requestAuthorization()" id="Request" value="Request Authorization"><br/>
                 
               </div>
             </div>
@@ -169,9 +169,10 @@
           <div class="col-sm-1 col-md-4"></div>
     
           <div class="btn-group col-md-4 col-sm-12" role="group" aria-label="First group">
-            <button type="button" class="btn btn-secondary">previous</button>
-            <button type="button" class="btn btn-secondary" id="play-stop">Play</button>
-            <button type="button" class="btn btn-secondary">next</button>
+            <button type="button" class="btn btn-secondary"onclick="previous()">previous</button>
+            <button type="button" class="btn btn-secondary" id="play" onclick="play()">Play</button>
+            <button type="button" class="btn btn-secondary" id="pause" onclick="pause()">Pause</button>
+            <button type="button" class="btn btn-secondary" onclick="next()">next</button>
           </div>
 
           <!--<input class="btn btn-primary btn-lg" type="button" onclick="requestAuthorization()" value="Request Authorization">-->

@@ -1,20 +1,19 @@
 $('document').ready(function () {
   const Rain = new Audio("Reference/Rain.mp3");
   const Fire = new Audio("Reference/Fire.mp3");
-  const Music = new Audio("Reference/The Central Park North - All the Time.mp3");
-
+  
+  $('#API-Spotify').hide();
+  $('#pause').hide();
   $('.exitfullscreen').hide();
 
+  $('#play').click(function () {
+    $('#play').hide();
+    $('#pause').show();
+  });
 
-  $('#play-stop').click(function () {
-    Music.loop=true;
-    if($('#play-stop').text()=='Play'){
-      Music.play();
-      $('#play-stop').text('Pause');
-    }else{
-      Music.pause();
-      $('#play-stop').text('Play');
-    }
+  $('#pause').click(function () {
+    $('#pause').hide();
+    $('#play').show();
   });
 
   $('#volumeMusica').click(function () {
