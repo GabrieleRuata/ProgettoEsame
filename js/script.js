@@ -1,10 +1,17 @@
 $('document').ready(function () {
   const Rain = new Audio("Reference/Rain.mp3");
   const Fire = new Audio("Reference/Fire.mp3");
+  const hairDryer = new Audio("Reference/hair-Dryer.mp3");
+  const Seashore = new Audio("Reference/Seashore.mp3");
+  const Fan = new Audio("Reference/fan.mp3");
+  const Vacuum = new Audio("Reference/Vacuum.mp3");
+  const Forest = new Audio("Reference/Forest.mp3");
+  const Traffic = new Audio("Reference/Traffic.mp3");
   
   $('.API-Spotify').hide();
   $('#pause').hide();
   $('.exitfullscreen').hide();
+  $('#VolumeIcon').attr("src","Reference/volume(1).png");
 
   $('#play').click(function () {
     $('#play').hide();
@@ -15,9 +22,6 @@ $('document').ready(function () {
     $('#pause').hide();
     $('#play').show();
   });
-
-  
-  
 
   $('#volumeMusica').change(function VolumeIcon() {
     if($('#volumeMusica').val()>49){
@@ -41,6 +45,43 @@ $('document').ready(function () {
       Fire.volume = $('#volumeFire').val() / 100;
       Fire.loop=true;
   });
+  
+  $('#volumeHairDryer').click(function () {
+      hairDryer.play();
+      hairDryer.volume = $('#volumeHairDryer').val() / 100;
+      hairDryer.loop=true;
+  });
+
+  $('#volumeSeashore').click(function () {
+      Seashore.play();
+      Seashore.volume = $('#volumeSeashore').val() / 100;
+      Seashore.loop=true;
+  });
+
+  $('#volumeFan').click(function () {
+      Fan.play();
+      Fan.volume = $('#volumeFan').val() / 100;
+      Fan.loop=true;
+  });
+
+  $('#volumeVacuum').click(function () {
+      Vacuum.play();
+      Vacuum.volume = $('#volumeVacuum').val() / 100;
+      Vacuum.loop=true;
+  });
+
+  $('#volumeForest').click(function () {
+      Forest.play();
+      Forest.volume = $('#volumeForest').val() / 100;
+      Forest.loop=true;
+  });
+
+  $('#volumeTraffic').click(function () {
+      Traffic.play();
+      Traffic.volume = $('#volumeTraffic').val() / 100;
+      Traffic.loop=true;
+  });
+
 
 
   $('.requestfullscreen').click(function () {

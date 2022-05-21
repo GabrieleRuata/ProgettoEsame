@@ -1,5 +1,5 @@
 window.onSpotifyWebPlaybackSDKReady = () => {
-    const token = 'BQAzwpLrqaL2Wrb2-EpNdYNinxzNGTSXxRYIU7piQ3BXRWBgjEDn2qtFd63BoyQn-emuEYGscPJ0zA3gEyO7jT1CwAyYNzPYPpnZD3iuD65TXY-VJ3y8bQ3sljpuTzn4FxF8Y0JrGAggj7qJzxOQ9xw9lIVcXL_rmnCSkZUPDXgRWskru2FsgdDirIg';
+    const token = 'BQADxVMapr0VvkMGo2KTGpeZILKntYgTN9HMCGLGlvkOskTauNbvER6Jj4-VmHTfyhm7jtk_DAc49SdcFGaW8uHQchJ0teq76Hbw7OsaVybciyUUdUvkjL3Aw6CQ1Uoy80im_f_1z1N49pVFvVpEobbg987Ie7et8-5DA8_oJaI-yNW2XOiKQpi0dDo';
     const player = new Spotify.Player({
         name: 'Relax In-Site Player',
         getOAuthToken: cb => { cb(token); },
@@ -35,6 +35,12 @@ window.onSpotifyWebPlaybackSDKReady = () => {
         player.setVolume($('#volumeMusica').val()/100).then(() => {
             console.log('Volume updated!');
           });
+          
+    
+    setTimeout(function(){
+        currentlyPlaying();
+    }, 1000);
+    currentlyPlaying();
     });
 
     document.onload = function() {
@@ -302,7 +308,7 @@ function shuffle(){
     
     setTimeout(function(){
         currentlyPlaying();
-    }, 1000);ù
+    }, 1000);
     currentlyPlaying();
 }
 
