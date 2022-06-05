@@ -1,47 +1,167 @@
-
-
-html, body{
+html,
+body {
     height: 100%;
 }
 
-.card{
+.card {
     margin: 10px;
-    height: 16rem;
+    height: 17rem;
     width: 18rem;
+    border-radius: 20px;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2);
+    background-color: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
 }
 
-.close-card{
+.close-card {
     position: absolute;
     width: 20px;
     height: 20px;
 }
 
 
-#note{
+#note {
     height: 100%;
 }
 
-.SVG{
-   height: 10%;
+.SVG {
+    height: 10%;
 }
 
-#note{
+#note {
     display: block;
     resize: none;
     background-color: transparent;
 }
 
-#timer{
+#timer {
     height: 5rem;
 }
 
-#time{
+#time {
     height: 100%;
     font-size: 40px;
 }
 
-#filler{
-    background : #55ff00;
+#filler {
+    background: #55ff00;
     height: 10px;
     width: 0px;
-  }
+    border-radius: 10px;
+}
+
+#albumImage {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+#trackTitle {
+    font-size: 15px;
+    font-style: bold;
+    color: aliceblue;
+}
+
+#trackArtist {
+    font-size: 10px;
+    color: aliceblue;
+}
+
+.API-Spotify {
+    visibility: hidden;
+}
+
+#containter-card {
+    margin-top: 40px;
+}
+
+#bottom-navbar {
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2);
+    background-color: rgba(255, 255, 255, .15);
+    backdrop-filter: blur(5px);
+    border-radius: 30px 30px 0px 0px;
+    height: 70px;
+}
+
+#top-navbar {
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2);
+    background-color: rgba(255, 255, 255, .15);
+    backdrop-filter: blur(5px);
+    border-radius: 0px 0px 10px 10px;
+}
+
+.noises {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 15px;
+    border-radius: 15px;
+    background: #e2e2e299;
+    backdrop-filter: blur(5px);
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.noises:hover {
+    opacity: 1;
+}
+
+.noises::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #ff691d;
+    cursor: pointer;
+}
+
+.noises::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #04AA6D;
+    cursor: pointer;
+}
+
+#volumeMusica {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 15px;
+    border-radius: 15px;
+    background: #e2e2e299;
+    backdrop-filter: blur(5px);
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    padding: 0px;
+}
+
+#volumeMusica:hover {
+    opacity: 1;
+}
+
+#volumeMusica::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #ff691d;
+    cursor: pointer;
+}
+
+#volumeMusica::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #04AA6D;
+    cursor: pointer;
+}
+
+#VolumeIcon{
+    width: 20px;
+    height: 20px;
+}

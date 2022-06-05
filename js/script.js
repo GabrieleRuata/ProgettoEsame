@@ -1,24 +1,37 @@
 $('document').ready(function () {
   const Rain = new Audio("Reference/Rain.mp3");
   const Fire = new Audio("Reference/Fire.mp3");
-  const Music = new Audio("Reference/The Central Park North - All the Time.mp3");
-
+  const hairDryer = new Audio("Reference/hair-Dryer.mp3");
+  const Seashore = new Audio("Reference/Seashore.mp3");
+  const Fan = new Audio("Reference/fan.mp3");
+  const Vacuum = new Audio("Reference/Vacuum.mp3");
+  const Forest = new Audio("Reference/Forest.mp3");
+  const Traffic = new Audio("Reference/Traffic.mp3");
+  
+  $('.API-Spotify').hide();
+  $('#pause').hide();
   $('.exitfullscreen').hide();
+  $('#VolumeIcon').attr("src","Reference/volume(1).png");
 
-
-  $('#play-stop').click(function () {
-    Music.loop=true;
-    if($('#play-stop').text()=='Play'){
-      Music.play();
-      $('#play-stop').text('Pause');
-    }else{
-      Music.pause();
-      $('#play-stop').text('Play');
-    }
+  $('#play').click(function () {
+    $('#play').hide();
+    $('#pause').show();
   });
 
-  $('#volumeMusica').click(function () {
-      Music.volume = $('#volumeMusica').val() / 100;
+  $('#pause').click(function () {
+    $('#pause').hide();
+    $('#play').show();
+  });
+
+  $('#volumeMusica').change(function VolumeIcon() {
+    if($('#volumeMusica').val()>49){
+      $('#VolumeIcon').attr("src","Reference/volume(2).png");
+    }else{
+      $('#VolumeIcon').attr("src","Reference/volume(1).png");
+    }
+    if ($('#volumeMusica').val()<1){
+      $('#VolumeIcon').attr("src","Reference/mute.png");
+    }
   });
 
   $('#volumeRain').click(function () {
@@ -32,10 +45,44 @@ $('document').ready(function () {
       Fire.volume = $('#volumeFire').val() / 100;
       Fire.loop=true;
   });
-
-  $('#stopP').click(function () {
-      Music.pause();
+  
+  $('#volumeHairDryer').click(function () {
+      hairDryer.play();
+      hairDryer.volume = $('#volumeHairDryer').val() / 100;
+      hairDryer.loop=true;
   });
+
+  $('#volumeSeashore').click(function () {
+      Seashore.play();
+      Seashore.volume = $('#volumeSeashore').val() / 100;
+      Seashore.loop=true;
+  });
+
+  $('#volumeFan').click(function () {
+      Fan.play();
+      Fan.volume = $('#volumeFan').val() / 100;
+      Fan.loop=true;
+  });
+
+  $('#volumeVacuum').click(function () {
+      Vacuum.play();
+      Vacuum.volume = $('#volumeVacuum').val() / 100;
+      Vacuum.loop=true;
+  });
+
+  $('#volumeForest').click(function () {
+      Forest.play();
+      Forest.volume = $('#volumeForest').val() / 100;
+      Forest.loop=true;
+  });
+
+  $('#volumeTraffic').click(function () {
+      Traffic.play();
+      Traffic.volume = $('#volumeTraffic').val() / 100;
+      Traffic.loop=true;
+  });
+
+
 
   $('.requestfullscreen').click(function () {
     var elem = document.documentElement;
@@ -84,13 +131,15 @@ $('document').ready(function () {
     var timedelay = 1;
     function delayCheck() {
         if (timedelay == 15) {    //rimetti a 15 quando hai finito
-            $('.card').hide();
+            $('.card').hide(1000);
+            $('.text-card').hide(500);
             timedelay = 1;
         }
         timedelay = timedelay+1;
     }
     $(document).mousemove(function () {
         $('.card').show();
+        $('.text-card').show();
         timedelay = 1;
         clearInterval(_delay);
         _delay = setInterval(delayCheck, 500);
@@ -98,6 +147,7 @@ $('document').ready(function () {
 
     $(document).on("touchstart click mouseenter keyup", "#note", function(){
         $('.card').show();
+        $('.text-card').show();
         timedelay = 1;
         clearInterval(_delay);
         _delay = setInterval(delayCheck, 500);
@@ -106,4 +156,3 @@ $('document').ready(function () {
     _delay = setInterval(delayCheck, 500)
 
 });
-

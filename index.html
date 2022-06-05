@@ -5,28 +5,27 @@
   <meta charset="UTF-8">
   <title>Home</title>
 
+  <link rel="stylesheet" href="https://fonts.google.com/specimen/Poppins">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
-  <script src="server.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <script src="js/Background.js"></script>"  
   <script src="js/script.js"></script>
   <script src="js/tomatoTimer.js"></script>
+  <script src="js/spotify.js"></script>
+  <script src="https://sdk.scdn.co/spotify-player.js"></script>
+  
   <link rel="stylesheet" href="css/style.css">
   <!--<link rel="stylesheet" href="css/progettazione.css">-->
   <link rel="stylesheet" href="css/Background.css">
-</script><script  src="js/Background.js"></script>
+  <script  src="js/Background.js"></script>
 </head>
 
-<body id="body">
+<body id="body" onload="onPageLoad()">
 
   <div class="wrapper grad">
     <div class="dots"></div>
@@ -36,10 +35,10 @@
     <div class="container-fluid">
       <div class="row">
     
-        <nav class="navbar col-12 container">
-          <h3>Site</h3>
-          <h5>About us</h5>
-          <button class="btn">share</button>
+        <nav class="navbar col-12 fixed-top " id="top-navbar">
+          <h3>Relax In-Site</h3>
+          <h5></h5>
+          <button class="btn">About us</button>
           <button class="btn requestfullscreen">full screen</button>
           <button class="btn exitfullscreen">exit full screen</button>
         </nav>
@@ -49,15 +48,14 @@
 
             <div class="col-3">
               <div class="card" id="pomodoro-app">
-                <button class="btn close-card btn-danger"></button>
-                <h5 class="text-center">Tomato timer</h5>
+                <h5 class="text-center text-card">Tomato timer</h5>
                 <hr>
                 <div id="container" class="container-fluid">
                   <div id="timer">
-                    <div id="time">
-                      <span id="minutes">25</span>
-                      <span id="colon">:</span>
-                      <span id="seconds">00</span>
+                    <div id="time" class="row">
+                      <span class="col-5 text-right" id="minutes">25</span>
+                      <span class="col-1 text-center" id="colon">:</span>
+                      <span class="col-5 text-left" id="seconds">00</span>
                     </div>
                     
                   </div>
@@ -75,23 +73,78 @@
             </div>
 
             <div class="col-6">
-              null
+              <div class="API-Spotify">
+                <label for="devices" class="form-label">Devices</label>
+                <select id="devices" class="form-control">
+                </select>
+                <input class="btn btn-primary btn-sm mt-3" type="button" onclick="refreshDevices()" value="Refresh Devices">
+                <input type="button" class="btn btn-dark btn-sm  mt-3" onclick="transfer()" value="Transfer">
+                
+                <label for="playlists" class="form-label">Playlists</label>
+                <select id="playlists" class="form-control">
+                </select>
+                <input class="btn btn-primary btn-sm mt-3" type="button" onclick="refreshPlaylists()" value="Refresh Playlists">
+                
+                <label for="tracks" class="form-label">Tracks</label>
+                <select id="tracks" class="form-control">
+                </select>
+                <input class="btn btn-primary btn-sm mt-3" type="button" onclick="fetchTracks()" value="Fetch Tracks">
+                
+                <label for="tracks" class="form-label">Album</label>
+                <input id="album" class="form-control">
+                
+                <input type="button" class="btn btn-dark" onclick="previous()" value="Prev">
+                <input type="button" class="btn btn-dark" onclick="play()" value="Play">
+                <input type="button" class="btn btn-dark" onclick="shuffle()" value="Shuffle">
+                <input type="button" class="btn btn-dark" onclick="pause()" value="Pause">
+                <input type="button" class="btn btn-dark" onclick="next()" value="Next">
+  
+              </div>
             </div>
 
             <div class="col-3">
               <div class="card float-right" id="WhiteNoises">
-                <h5 class="text-center">White Noises</h5>
+                <h5 class="text-center text-card">White Noises</h5>
                 <hr>
-                <span>Rain</span>
-                <input type="range" min="0" max="100" value="50" id="volumeRain">
-                <span>Fire</span>
-                <input type="range" min="0" max="100" value="50" id="volumeFire">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-6">
+                      <span>Rain</span>
+                    <input class="noises" type="range" min="0" max="100" value="0" id="volumeRain">
+                    </div>
+                    <div class="col-6">
+                      <span>Fire</span>
+                    <input class="noises" type="range" min="0" max="100" value="0" id="volumeFire">
+                    </div>
+                    <div class="col-6">
+                      <span>Forest</span>
+                    <input class="noises" type="range" min="0" max="100" value="0" id="volumeForest">
+                    </div>
+                    <div class="col-6">
+                      <span>Hair Dryer</span>
+                    <input class="noises" type="range" min="0" max="100" value="0" id="volumeHairDryer">
+                    </div>
+                    <div class="col-6">
+                      <span>Seashore</span>
+                    <input class="noises" type="range" min="0" max="100" value="0" id="volumeSeashore">
+                    </div>
+                    <div class="col-6">
+                      <span>Traffic</span>
+                    <input class="noises" type="range" min="0" max="100" value="0" id="volumeTraffic">
+                    </div>
+                    <div class="col-6">
+                      <span>Vacuum</span>
+                    <input class="noises" type="range" min="0" max="100" value="0" id="volumeVacuum">
+                    </div>
+                  </div>
+                </div>
+                
               </div>
             </div>
             
             <div class="col-3">
               <div class="card" id="Notepad">
-                <h5 class="text-center">NotePad</h5>
+                <h5 class="text-center text-card">NotePad</h5>
                 <hr>
                 <textarea id="note"></textarea>
                 <button type="button" class="btn" id="NPClear">Clear</button>
@@ -100,31 +153,65 @@
             </div>
 
             <div class="col-6">
-              null
+            
+              <div class="API-Spotify">
+                <h1> Currently Playing</h1>
+                <input type="button" class="btn btn-primary btn-sm mt-3" onclick="currentlyPlaying()" value="Refresh Currently Playing">
+
+                <div class="col">
+                  <div id="radioButtons"></div>
+                  <input type="button" class="btn btn-dark" onclick="saveNewRadioButton()" value="Add">
+              </div>
+
+            
+            </div>
+              
             </div>
 
             <div class="col-3">
-              <div class="card float-right" id="MusicGeneres">
-                <h5 class="text-center">Music</h5>
+              <div class="card float-right container-fluid" id="MusicGeneres">
+                <h5 class="text-center text-card">Music</h5>
                 <hr>
-                seleziona musica genere
+                <input class="btn btn-primary btn-lg" type="button" onclick="requestAuthorization()" id="Request" value="Request Authorization">
+                <div class="col-12" id="MusicGenres">
+                  <button class="btn col-12" id="gnLofi" onclick="gnLofi()">Lofi</button>
+                  <button class="btn col-12" id="gnSleep" onclick="gnSleep()">Sleep</button>
+                  <button class="btn col-12" id="gnJazz" onclick="gnJazz()">Jazz</button>
+                </div>
               </div>
             </div>
 
           </div>
         </div>
     
-        <nav class="navbar fixed-bottom container">
-          <div class="col-sm-1 col-md-4"></div>
-    
-          <div class="btn-group col-md-4 col-sm-12" role="group" aria-label="First group">
-            <button type="button" class="btn btn-secondary"><<</button>
-                <button type="button" class="btn btn-secondary" id="play-stop">Play</button>
-                <button type="button" class="btn btn-secondary">>></button>
+        <nav class="navbar fixed-bottom container" id="bottom-navbar">
+          <div class="col-sm-1 col-md-4 row">
+            <div class="col-5">
+              <div id="trackTitle"></div>
+            </div>
+            <div class="col-5 float-left">
+              <div id="trackArtist"></div>
+            </div>
+            <div class="col-1">
+              <img id="albumImage" src="">
+            </div>
           </div>
     
-          <div class="col-sm-1 col-md-4">
-            <input type="range" min="0" max="100" value="50" id="volumeMusica">
+          <div class="btn-group col-md-4 col-sm-12" role="group" aria-label="First group">
+            <button type="button" class="btn btn-secondary"onclick="previous()">previous</button>
+            <button type="button" class="btn btn-secondary" id="play" onclick="play()">Play</button>
+            <button type="button" class="btn btn-secondary" id="pause" onclick="pause()">Pause</button>
+            <button type="button" class="btn btn-secondary" onclick="next()">next</button>
+          </div>
+
+          <!--<input class="btn btn-primary btn-lg" type="button" onclick="requestAuthorization()" value="Request Authorization">-->
+    
+          <div class="col-sm-1 col-md-4 row">
+            <div class="col-1">
+              <img id="VolumeIcon" class="float-lg-right" src="Reference/mute.png">
+            </div>
+            <input type="range" min="0" max="100" value="50" class="col-10" id="volumeMusica">
+            
           </div>
         </nav>
       </div>
@@ -132,6 +219,8 @@
     </div>
     
 
+
+<!-- partial:index.partial.html -->
 <script type="x-shader/x-vertex" id="vertexMetaballs">
 	attribute vec2 position;
   void main() {
@@ -184,12 +273,10 @@
 	}
 
 </script>
-
-
-
 <!-- partial -->
-  <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-183/Metaballs.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js'></script>
+<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-183/Metaballs.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js'></script><script  src="js/Background.js"></script>
+
 </body>
 
 </html>
