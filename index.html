@@ -34,13 +34,20 @@
 
     <div class="container-fluid">
       <div class="row">
-    
         <nav class="navbar col-12 fixed-top " id="top-navbar">
-          <h3>Relax In-Site</h3>
-          <h5></h5>
-          <button class="btn">About us</button>
-          <button class="btn requestfullscreen">full screen</button>
-          <button class="btn exitfullscreen">exit full screen</button>
+          <div class="col-3">
+            <h3>Relax In-Site</h3>
+          </div>
+          <div class="col-8">
+          </div>
+          <div class="col-1">
+            <button class="btn requestfullscreen">
+              <img class="full-img" src="Reference/fullscreen.png" >
+            </button>
+            <button class="btn exitfullscreen">
+              <img class="full-img" src="Reference/exitfullscreen.png">
+            </button>
+          </div>
         </nav>
     
         <div class="col-12 container" id="containter-card">
@@ -198,10 +205,10 @@
           </div>
     
           <div class="btn-group col-md-4 col-sm-12" role="group" aria-label="First group">
-            <button type="button" class="btn btn-secondary"onclick="previous()">previous</button>
-            <button type="button" class="btn btn-secondary" id="play" onclick="play()">Play</button>
-            <button type="button" class="btn btn-secondary" id="pause" onclick="pause()">Pause</button>
-            <button type="button" class="btn btn-secondary" onclick="next()">next</button>
+            <button type="button" class="btn btn-secondary btn-dark"onclick="previous()">previous</button>
+            <button type="button" class="btn btn-secondary btn-dark" id="play" onclick="play()">Play</button>
+            <button type="button" class="btn btn-secondary btn-dark" id="pause" onclick="pause()">Pause</button>
+            <button type="button" class="btn btn-secondary btn-dark" onclick="next()">next</button>
           </div>
 
           <!--<input class="btn btn-primary btn-lg" type="button" onclick="requestAuthorization()" value="Request Authorization">-->

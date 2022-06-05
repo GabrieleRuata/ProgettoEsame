@@ -90,6 +90,11 @@ body {
     border-radius: 0px 0px 10px 10px;
 }
 
+.full-img {
+    height: 25%;
+    width: 25%;
+}
+
 .noises {
     -webkit-appearance: none;
     width: 100%;
@@ -165,3 +170,4 @@ body {
     width: 20px;
     height: 20px;
 }
+

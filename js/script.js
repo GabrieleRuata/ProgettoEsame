@@ -133,6 +133,7 @@ $('document').ready(function () {
         if (timedelay == 15) {    //rimetti a 15 quando hai finito
             $('.card').hide(1000);
             $('.text-card').hide(500);
+            $('#top-navbar').hide(500);
             timedelay = 1;
         }
         timedelay = timedelay+1;
@@ -140,6 +141,7 @@ $('document').ready(function () {
     $(document).mousemove(function () {
         $('.card').show();
         $('.text-card').show();
+        $('#top-navbar').show();
         timedelay = 1;
         clearInterval(_delay);
         _delay = setInterval(delayCheck, 500);
