@@ -1,5 +1,5 @@
 window.onSpotifyWebPlaybackSDKReady = () => {
-    const token = 'BQADxVMapr0VvkMGo2KTGpeZILKntYgTN9HMCGLGlvkOskTauNbvER6Jj4-VmHTfyhm7jtk_DAc49SdcFGaW8uHQchJ0teq76Hbw7OsaVybciyUUdUvkjL3Aw6CQ1Uoy80im_f_1z1N49pVFvVpEobbg987Ie7et8-5DA8_oJaI-yNW2XOiKQpi0dDo';
+    const token = 'BQA2xNvYiDeAkiyrid7ahzqe9ujfasmH6GLu709E3j05iPjEmPwBFlZG82GI1oHiqTtKnOBO3Yt3exNQgeyx_i9cwhAixvsyI9JNmQvjwsv8oOjArAeH7rC8IJW9_zDJsU6xmiPJei-hXlyJmotdmF4k3D2GwZlbyNVbj6Sc2T5Xccvo9JE2i4TjfM0';
     const player = new Spotify.Player({
         name: 'Relax In-Site Player',
         getOAuthToken: cb => { cb(token); },
